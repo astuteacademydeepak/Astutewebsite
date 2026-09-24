@@ -42,6 +42,7 @@ export default function Header({ onOpenLead }) {
                 src="https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/wyk1m34k_Astute%20logo%201.png"
                 alt="Astute Academy"
                 className="h-10 lg:h-12 w-auto"
+                style={{ mixBlendMode: "multiply" }}
               />
             </Link>
 

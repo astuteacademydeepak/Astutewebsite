@@ -183,7 +183,7 @@ export default function Admin() {
     return (
       <div className="min-h-screen bg-brand-light flex items-center justify-center p-6">
         <form onSubmit={login} className="w-full max-w-md bg-white rounded-3xl p-8 shadow-lg border border-slate-100" data-testid="admin-login-form">
-          <img src={LOGO} alt="Astute Academy" className="h-12 w-auto mb-6" />
+          <img src={LOGO} alt="Astute Academy" className="h-12 w-auto mb-6" style={{ mixBlendMode: "multiply" }} />
           <h1 className="font-display font-extrabold text-2xl text-brand-navy mb-2">Admin</h1>
           <p className="text-sm text-slate-500 mb-6">Manage leads, contacts, events and content.</p>
           <input required type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-brand-blue focus:outline-none mb-3" data-testid="admin-email" />
@@ -199,7 +199,7 @@ export default function Admin() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <img src={LOGO} alt="Astute" className="h-10 w-auto" />
+            <img src={LOGO} alt="Astute" className="h-10 w-auto" style={{ mixBlendMode: "multiply" }} />
             <div>
               <h1 className="font-display font-extrabold text-xl lg:text-2xl text-brand-navy">Admin Dashboard</h1>
               <p className="text-xs text-slate-500">Publish content and track enquiries.</p>
