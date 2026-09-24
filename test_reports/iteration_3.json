@@ -1,0 +1,21 @@
+{
+  "summary": "Bug-fix retest of two issues on Astute Academy site: (1) Partners marquee removal, (2) Header/Admin logo mix-blend-mode. Both bug fixes verified. Light regression on homepage sections, nav, and Marathi toggle also passed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Note: data-testid='header-logo' is placed on the outer <Link>, while the mixBlendMode style lives on the child <img>. Functionally correct, but tests querying [data-testid=header-logo] directly won't observe the style — needed to query [data-testid=header-logo] img. Consider moving data-testid to the <img> or adding a secondary testid on the image element for easier assertions."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not tested)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Verified on preview URL https://astute-rebuild.preview.emergentagent.com. Partners section (data-testid='partners-section' and heading 'Global Education Network') is completely absent from the DOM. Header logo <img> inside [data-testid='header-logo'] has computed mix-blend-mode: multiply and inline style 'mix-blend-mode: multiply;'. Admin login logo also has mixBlendMode=multiply (confirmed via computed style on img tag). Visual screenshots confirm no white rectangle around either logo. Nav links (Programs, Destinations, Medical Careers, Career Counselling, Resources, About) all present. Marathi toggle navigates to /mr and 'योग्य' is rendered in the hero. Regression sections rendered (Hero, Pathway Selector, Destinations, Medical, Why, Journey, Testimonials block, Free Assessments, Events, Blog, FAQ visible in screenshot). NOTE: some section labels are internationalised/decorative headings so a raw substring search for 'Testimonials'/'FAQ'/'Audience' didn't match; visually all sections render.",
+  "rca of the issue": "N/A — bugs already fixed by main agent. Verified fix approach: (a) removed <Partners/> import & usage from /app/frontend/src/pages/Home.jsx; (b) applied style={{ mixBlendMode: 'multiply' }} to logo <img> in Header.jsx and Admin.jsx so the white PNG background disappears against light page/card backgrounds."
+}
