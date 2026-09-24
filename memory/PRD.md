@@ -1,0 +1,55 @@
+# Astute Academy — Product Requirements Document
+
+## Problem Statement
+Complete redesign and rebuild of https://www.astuteacademy.com/ as a premium, modern, responsive, bilingual (English + Marathi) education & career counselling brand. Position as: Premium Global Education + Career Counselling + Medical Career Guidance Brand.
+
+## User Personas
+- Indian students (Class 12, Bachelor's, Master's) planning global education
+- Indian medical graduates (MBBS/MD) pursuing USMLE, Residency, Fellowships, Research
+- Parents of prospective students seeking to understand options and cost
+- Working professionals seeking higher education / international careers
+
+## Core Requirements (Static)
+- Bilingual EN + मराठी (URL prefix /mr/, client-side i18n)
+- Brand colors: Blue #0059A9 (dominant), Orange #EB5F22 (accent), Navy #00226B
+- Fonts: Plus Jakarta Sans (display) + DM Sans (body) + Noto Sans Devanagari
+- Fast, mobile-first, WCAG-conscious
+- WhatsApp: 918899117757 / 8899117767
+- No fake statistics, no unsupported claims
+
+## Architecture
+- Backend: FastAPI + MongoDB with routes for leads, contact, events, blog, testimonials, faqs, admin
+- Frontend: React 19 + React Router + Tailwind + Sonner (toasts) + Lucide icons
+- Content model: bilingual `_en` + `_mr` fields on events, blog, testimonials, faqs
+- JWT-based admin auth (fallback secret; production must set JWT_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD)
+
+## What's Been Implemented (Feb 2026)
+- Homepage: Hero, Audience Pathway Selector, Destinations, Medical Pathway, Why Astute, 6-step Journey Timeline, Testimonials with role filter, Partner logo marquee, Free Assessments, Events, Blog, FAQ tabs, Final CTA, Footer
+- Destination pages: USA, Germany, Medical Careers, Career Counselling (each with programs, process, why, CTA)
+- Utility pages: About + Leadership, Blog list + detail, Events (upcoming/past tabs), Contact form, 404
+- Multi-step (6-step) Lead Form modal with progress bar, validation, EN/MR labels
+- WhatsApp FAB (desktop) + Mobile bottom bar (WhatsApp + Book)
+- Bilingual language switcher (EN | मराठी) in header + footer with URL routing
+- Admin dashboard: JWT login, tables for leads and contact messages
+- Seed API with 5 testimonials, 4 events, 4 blog posts, 8 FAQs — all bilingual
+- Per-route document titles + SEO meta tags
+
+## Prioritized Backlog
+
+### P1 — Next high-value
+- AI Career Pathway Assistant (opt-in) using Emergent LLM key
+- Program detail pages per program (USMLE, Residency, Bachelor's, etc.)
+- Admin CMS forms to add events, blog posts, testimonials from the dashboard UI
+- Leadership section with additional team members
+- Full FAQ page (currently only homepage tabs)
+
+### P2 — Growth & polish
+- hreflang tags for /mr URLs (server-side or via helmet)
+- Google Analytics 4 + Meta Pixel + event tracking (language_switch_en/mr, form_start, form_complete, whatsapp_click)
+- Sitemap.xml + robots.txt with bilingual URLs
+- Rich testimonials with video + longer case studies
+- Newsletter subscription
+- Blog search + category filter chips
+- Real Astute leadership photograph and biographical detail
+- Custom "student stories" long-read templates
+- Structured data (Organization, FAQ, Course schema)

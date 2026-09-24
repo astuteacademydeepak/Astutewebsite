@@ -24,6 +24,29 @@ function ScrollToTop() {
   return null;
 }
 
+const TITLES = {
+  "/": "Astute Academy — Global Education & Career Counselling",
+  "/usa": "Study in USA — Astute Academy",
+  "/germany": "Study in Germany — Astute Academy",
+  "/medical-careers": "Medical Careers — USMLE, Residency & Research — Astute Academy",
+  "/career-counselling": "Career Counselling — Astute Academy",
+  "/about": "About — Astute Academy",
+  "/blog": "Knowledge Hub — Astute Academy",
+  "/events": "Webinars & Events — Astute Academy",
+  "/contact": "Contact — Astute Academy",
+  "/admin": "Admin — Astute Academy",
+};
+
+function TitleUpdater() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const cleaned = pathname.replace(/^\/mr/, "") || "/";
+    const key = Object.keys(TITLES).find((k) => cleaned === k || cleaned.startsWith(k + "/")) || "/";
+    document.title = TITLES[key];
+  }, [pathname]);
+  return null;
+}
+
 function Shell() {
   const [leadOpen, setLeadOpen] = useState(false);
   const open = () => setLeadOpen(true);
@@ -71,6 +94,7 @@ function App() {
       <BrowserRouter>
         <LanguageProvider>
           <ScrollToTop />
+          <TitleUpdater />
           <Shell />
           <Toaster position="top-center" richColors />
         </LanguageProvider>
