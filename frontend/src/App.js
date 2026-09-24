@@ -17,6 +17,8 @@ import Events from "./pages/Events";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
+import ProgramDetail, { ProgramsIndex } from "./pages/Programs";
+import PathwayAssistant from "./components/PathwayAssistant";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -49,7 +51,9 @@ function TitleUpdater() {
 
 function Shell() {
   const [leadOpen, setLeadOpen] = useState(false);
-  const open = () => setLeadOpen(true);
+  const [pathwayOpen, setPathwayOpen] = useState(false);
+  const openLead = () => setLeadOpen(true);
+  const openPathway = () => setPathwayOpen(true);
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
 
@@ -65,25 +69,28 @@ function Shell() {
 
   return (
     <>
-      <Header onOpenLead={open} />
+      <Header onOpenLead={openLead} onOpenPathway={openPathway} />
       <main className="pb-20 md:pb-0">
         <Routes>
-          {["/", "/mr"].map((p) => <Route key={p} path={p} element={<Home onOpenLead={open} />} />)}
-          {["/usa", "/mr/usa"].map((p) => <Route key={p} path={p} element={<USAPage onOpenLead={open} />} />)}
-          {["/germany", "/mr/germany"].map((p) => <Route key={p} path={p} element={<GermanyPage onOpenLead={open} />} />)}
-          {["/medical-careers", "/mr/medical-careers"].map((p) => <Route key={p} path={p} element={<MedicalPage onOpenLead={open} />} />)}
-          {["/career-counselling", "/mr/career-counselling"].map((p) => <Route key={p} path={p} element={<CounsellingPage onOpenLead={open} />} />)}
+          {["/", "/mr"].map((p) => <Route key={p} path={p} element={<Home onOpenLead={openLead} onOpenPathway={openPathway} />} />)}
+          {["/usa", "/mr/usa"].map((p) => <Route key={p} path={p} element={<USAPage onOpenLead={openLead} />} />)}
+          {["/germany", "/mr/germany"].map((p) => <Route key={p} path={p} element={<GermanyPage onOpenLead={openLead} />} />)}
+          {["/medical-careers", "/mr/medical-careers"].map((p) => <Route key={p} path={p} element={<MedicalPage onOpenLead={openLead} />} />)}
+          {["/career-counselling", "/mr/career-counselling"].map((p) => <Route key={p} path={p} element={<CounsellingPage onOpenLead={openLead} />} />)}
+          {["/programs", "/mr/programs"].map((p) => <Route key={p} path={p} element={<ProgramsIndex onOpenLead={openLead} />} />)}
+          {["/programs/:slug", "/mr/programs/:slug"].map((p) => <Route key={p} path={p} element={<ProgramDetail onOpenLead={openLead} />} />)}
           {["/about", "/mr/about"].map((p) => <Route key={p} path={p} element={<About />} />)}
           {["/blog", "/mr/blog"].map((p) => <Route key={p} path={p} element={<BlogList />} />)}
           {["/blog/:slug", "/mr/blog/:slug"].map((p) => <Route key={p} path={p} element={<BlogDetail />} />)}
           {["/events", "/mr/events"].map((p) => <Route key={p} path={p} element={<Events />} />)}
-          {["/contact", "/mr/contact"].map((p) => <Route key={p} path={p} element={<Contact onOpenLead={open} />} />)}
+          {["/contact", "/mr/contact"].map((p) => <Route key={p} path={p} element={<Contact onOpenLead={openLead} />} />)}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
-      <Overlays onOpenLead={open} />
+      <Overlays onOpenLead={openLead} onOpenPathway={openPathway} />
       <LeadFormModal open={leadOpen} onClose={() => setLeadOpen(false)} />
+      <PathwayAssistant open={pathwayOpen} onClose={() => setPathwayOpen(false)} onOpenLead={openLead} />
     </>
   );
 }

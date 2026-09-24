@@ -10,13 +10,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14">
           <div className="lg:col-span-2 max-w-md">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-brand-orange flex items-center justify-center font-display font-extrabold text-lg">A</div>
-              <div className="leading-none">
-                <div className="font-display font-extrabold text-lg">Astute Academy</div>
-                <div className="text-white/60 text-[10px] tracking-[0.24em] uppercase">Global Education & Careers</div>
-              </div>
-            </div>
+            <img
+              src="https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/wyk1m34k_Astute%20logo%201.png"
+              alt="Astute Academy"
+              className="h-14 w-auto mb-5 brightness-0 invert"
+            />
             <p className="text-white/70 text-sm leading-relaxed mb-6">{t.footer.tagline}</p>
             <div className="space-y-2 text-sm text-white/80">
               <a href="tel:+918899117757" className="flex items-center gap-2 hover:text-brand-orange transition-colors"><Phone className="w-4 h-4" /> 8899117757 / 8899117767</a>

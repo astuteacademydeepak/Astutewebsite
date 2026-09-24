@@ -14,7 +14,7 @@ const GERMANY_IMG = "https://images.unsplash.com/photo-1467269204594-9661b134dd2
 const MED_IMG = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80";
 
 /* ---------- HERO ---------- */
-export function Hero({ onOpenLead }) {
+export function Hero({ onOpenLead, onOpenPathway }) {
   const { lang, t } = useLang();
   return (
     <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-24 overflow-hidden hero-glow" data-testid="hero-section">
@@ -36,9 +36,11 @@ export function Hero({ onOpenLead }) {
               <button onClick={onOpenLead} className="btn-orange inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm sm:text-base shadow-lg shadow-orange-500/20" data-testid="hero-book-cta">
                 {t.hero.primary} <ArrowRight className="w-4 h-4" />
               </button>
-              <Link to={langPath(lang, "/medical-careers")} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm sm:text-base border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white transition-colors" data-testid="hero-explore-programs">
-                {t.hero.secondary}
-              </Link>
+              {onOpenPathway && (
+                <button onClick={onOpenPathway} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm sm:text-base border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white transition-colors" data-testid="hero-pathway-cta">
+                  <Sparkles className="w-4 h-4" /> {lang === "mr" ? "AI पथ शोधा" : "Find My Pathway"}
+                </button>
+              )}
             </div>
             <div className="mt-10 pt-6 border-t border-slate-200 max-w-md animate-fade-up" style={{animationDelay: "0.3s"}}>
               <div className="flex items-center gap-3">
@@ -117,8 +119,8 @@ export function AudiencePathway({ onOpenLead }) {
 export function Destinations() {
   const { lang, t } = useLang();
   const cards = [
-    { title: "USA", desc: t.destinations.usaDesc, img: USA_IMG, link: langPath(lang, "/usa"), cta: t.destinations.exploreUsa, tag: "Bachelor's · Master's · Medical" },
-    { title: "Germany", desc: t.destinations.germanyDesc, img: GERMANY_IMG, link: langPath(lang, "/germany"), cta: t.destinations.exploreGermany, tag: "Engineering · English-medium · STEM" },
+    { title: "USA", desc: t.destinations.usaDesc, img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&q=85", link: langPath(lang, "/usa"), cta: t.destinations.exploreUsa, tag: "Bachelor's · Master's · Medical" },
+    { title: "Germany", desc: t.destinations.germanyDesc, img: "https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?w=1200&q=85", link: langPath(lang, "/germany"), cta: t.destinations.exploreGermany, tag: "Engineering · English-medium · STEM" },
   ];
   return (
     <section className="py-16 lg:py-24" data-testid="destinations-section">
@@ -134,10 +136,10 @@ export function Destinations() {
               <img src={c.img} alt={c.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/85 to-brand-navy/20" />
               <div className="relative h-full flex flex-col justify-end p-7 lg:p-10 text-white">
-                <div className="text-xs font-semibold uppercase tracking-widest text-brand-orange mb-2">{c.tag}</div>
+                <div className="inline-flex items-center self-start px-3 py-1 rounded-full bg-brand-orange text-white text-[10px] font-bold uppercase tracking-widest mb-3">{c.tag}</div>
                 <h3 className="font-display font-extrabold text-4xl lg:text-5xl tracking-tight mb-3">{c.title}</h3>
-                <p className="text-white/85 max-w-md text-sm lg:text-base leading-relaxed mb-5">{c.desc}</p>
-                <div className="inline-flex items-center gap-2 font-semibold text-sm group-hover:gap-3 transition-all">
+                <p className="text-white/90 max-w-md text-sm lg:text-base leading-relaxed mb-5">{c.desc}</p>
+                <div className="inline-flex items-center gap-2 font-semibold text-sm group-hover:gap-3 transition-all text-white">
                   {c.cta} <ArrowUpRight className="w-4 h-4" />
                 </div>
               </div>

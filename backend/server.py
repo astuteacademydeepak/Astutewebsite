@@ -21,6 +21,7 @@ db = client[os.environ['DB_NAME']]
 JWT_SECRET = os.environ.get('JWT_SECRET', 'astute-academy-secret-key-change-me')
 ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@astuteacademy.com')
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'astute@2026')
+EMERGENT_LLM_KEY = os.environ.get('EMERGENT_LLM_KEY', '')
 
 app = FastAPI(title="Astute Academy API")
 api_router = APIRouter(prefix="/api")
@@ -169,6 +170,16 @@ class LoginBody(BaseModel):
     password: str
 
 
+class PathwayRequest(BaseModel):
+    qualification: Optional[str] = None
+    background: Optional[str] = None
+    interested_course: Optional[str] = None
+    preferred_country: Optional[str] = None
+    budget: Optional[str] = None
+    goal: Optional[str] = None
+    language: str = "en"
+
+
 # ---------- Public Routes ----------
 @api_router.get("/")
 async def root():
@@ -276,6 +287,76 @@ async def admin_delete_blog(post_id: str, _: str = Depends(verify_admin)):
 async def admin_create_testimonial(payload: Testimonial, _: str = Depends(verify_admin)):
     await db.testimonials.insert_one(payload.model_dump())
     return payload
+
+
+@api_router.delete("/admin/testimonials/{tid}")
+async def admin_delete_testimonial(tid: str, _: str = Depends(verify_admin)):
+    await db.testimonials.delete_one({"id": tid})
+    return {"ok": True}
+
+
+@api_router.get("/admin/events", response_model=List[EventItem])
+async def admin_list_events(_: str = Depends(verify_admin)):
+    items = await db.events.find({}, {"_id": 0}).sort("date", -1).to_list(500)
+    return items
+
+
+@api_router.get("/admin/blog", response_model=List[BlogPost])
+async def admin_list_blog(_: str = Depends(verify_admin)):
+    items = await db.blog.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
+    return items
+
+
+@api_router.get("/admin/testimonials", response_model=List[Testimonial])
+async def admin_list_testimonials(_: str = Depends(verify_admin)):
+    items = await db.testimonials.find({}, {"_id": 0}).to_list(500)
+    return items
+
+
+# ---------- AI Pathway Assistant ----------
+@api_router.post("/ai/pathway")
+async def ai_pathway(payload: PathwayRequest):
+    if not EMERGENT_LLM_KEY:
+        raise HTTPException(status_code=503, detail="AI service not configured")
+    try:
+        from emergentintegrations.llm.chat import LlmChat, UserMessage
+    except Exception as e:
+        raise HTTPException(status_code=503, detail=f"AI package unavailable: {e}")
+
+    lang_instruction = "Respond in natural, professional Marathi (मराठी). Keep technical terms like MBBS, USMLE, Residency, Bachelor's, Master's, USA, Germany in English." if payload.language == "mr" else "Respond in clear, professional English."
+
+    system_message = f"""You are the Astute Academy Career Pathway Assistant — a warm, honest and rigorous career guide for Indian students, doctors, parents and working professionals aiming for global education (USA, Germany) and international medical careers (USMLE, Residency, Fellowships, Research).
+
+Rules:
+- {lang_instruction}
+- Suggest 2-3 concrete possible pathways with clear steps.
+- Never guarantee admission, visa approval, scholarships, residency match, or specific outcomes.
+- Never invent statistics, university rankings or admission rates.
+- Never mention specific fees unless they are broadly-known (like Germany blocked account ~€11,208).
+- Structure the response with a short opening summary, then numbered pathways, each with a short title, 3-5 concrete next steps, and typical timeline in months.
+- Always end with a sentence encouraging the user to book a free counselling session with Astute Academy for verified, personalised guidance.
+- Keep total response under 350 words. Use short paragraphs, not walls of text.
+- If the user's inputs are too vague, ask one clarifying question and stop."""
+
+    user_text = f"""Please suggest possible education / career pathways based on:
+- Current qualification: {payload.qualification or 'not specified'}
+- Academic background: {payload.background or 'not specified'}
+- Interested course / field: {payload.interested_course or 'not specified'}
+- Preferred country: {payload.preferred_country or 'not specified'}
+- Approximate budget: {payload.budget or 'not specified'}
+- Career goal: {payload.goal or 'not specified'}"""
+
+    try:
+        chat = LlmChat(
+            api_key=EMERGENT_LLM_KEY,
+            session_id=f"pathway-{uuid.uuid4()}",
+            system_message=system_message,
+        ).with_model("anthropic", "claude-sonnet-5")
+        response = await chat.send_message(UserMessage(text=user_text))
+        return {"response": response, "disclaimer": "AI-generated guidance is informational only. Eligibility, admissions, and university policies should be verified with Astute counsellors and the relevant institution."}
+    except Exception as e:
+        logger.exception("AI pathway error")
+        raise HTTPException(status_code=500, detail=f"AI error: {str(e)[:200]}")
 
 
 # ---------- Seed ----------

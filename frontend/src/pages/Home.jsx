@@ -1,9 +1,9 @@
 import { Hero, AudiencePathway, Destinations, MedicalPathway, WhyAstute, JourneyTimeline, TestimonialsSection, Partners, FreeAssessments, EventsSection, BlogSection, FaqSection, FinalCta } from "../components/HomeSections";
 
-export default function Home({ onOpenLead }) {
+export default function Home({ onOpenLead, onOpenPathway }) {
   return (
     <>
-      <Hero onOpenLead={onOpenLead} />
+      <Hero onOpenLead={onOpenLead} onOpenPathway={onOpenPathway} />
       <AudiencePathway onOpenLead={onOpenLead} />
       <Destinations />
       <MedicalPathway />
@@ -11,7 +11,7 @@ export default function Home({ onOpenLead }) {
       <JourneyTimeline />
       <TestimonialsSection />
       <Partners />
-      <FreeAssessments onOpenLead={onOpenLead} />
+      <FreeAssessments onOpenLead={onOpenLead} onOpenPathway={onOpenPathway} />
       <EventsSection />
       <BlogSection />
       <FaqSection />

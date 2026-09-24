@@ -39,11 +39,11 @@ export default function Header({ onOpenLead }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <Link to={langPath(lang, "/")} className="flex items-center gap-2" data-testid="header-logo">
-              <div className="w-9 h-9 rounded-xl bg-brand-navy flex items-center justify-center text-white font-display font-extrabold text-lg">A</div>
-              <div className="flex flex-col leading-none">
-                <span className="font-display font-extrabold text-brand-navy text-lg tracking-tight">Astute</span>
-                <span className="font-display font-semibold text-brand-orange text-[10px] tracking-[0.24em] uppercase">Academy</span>
-              </div>
+              <img
+                src="https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/wyk1m34k_Astute%20logo%201.png"
+                alt="Astute Academy"
+                className="h-10 lg:h-12 w-auto"
+              />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-1">
