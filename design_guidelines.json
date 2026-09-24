@@ -1,0 +1,131 @@
+{
+  "project_name": "Astute Academy - Redesign & Rebuild",
+  "brand_identity": {
+    "positioning": "Premium Global Education + Career Counselling + Medical Career Guidance Brand for students, doctors, parents, and working professionals with focus on USA, Germany, Medical Careers (USMLE, Residency, Fellowships, Research), and International Career Advisory.",
+    "emotional_tone": "Authoritative, trusted, global, warm, human, high-precision, editorial executive advisory.",
+    "anti_patterns": [
+      "No cheap coaching institute look or overcrowded banner lists",
+      "No generic 'study abroad' template look with passport + airplane stock photos",
+      "No excessive, cheap full-screen gradients (#7351B7 or muddy dark gradients)",
+      "No centered-everything disease",
+      "No Inter font for main headings; use Plus Jakarta Sans for Display and DM Sans for Body",
+      "No raw HTML selects or datepickers; use Shadcn Select and Calendar",
+      "No transparent background headers without blur"
+    ]
+  },
+  "colors": {
+    "primary_blue": "#0059A9",
+    "secondary_orange": "#EB5F22",
+    "dark_navy": "#00226B",
+    "pure_white": "#FFFFFF",
+    "light_bg": "#F6F9FC",
+    "slate_text": "#1E293B",
+    "muted_gray": "#64748B",
+    "border_subtle": "#E2E8F0",
+    "card_bg": "#FFFFFF",
+    "css_variables": {
+      "--primary": "208 100% 33%",
+      "--primary-foreground": "0 0% 100%",
+      "--secondary": "18 84% 53%",
+      "--secondary-foreground": "0 0% 100%",
+      "--navy": "221 100% 21%",
+      "--background": "210 40% 98%",
+      "--foreground": "215 32% 17%",
+      "--card": "0 0% 100%",
+      "--card-foreground": "215 32% 17%",
+      "--popover": "0 0% 100%",
+      "--popover-foreground": "215 32% 17%",
+      "--muted": "214 32% 91%",
+      "--muted-foreground": "215 16% 47%",
+      "--border": "214 32% 91%",
+      "--ring": "208 100% 33%"
+    },
+    "usage_rules": "Primary Blue (#0059A9) is dominant. Secondary Orange (#EB5F22) is used strictly as a kinetic accent for primary CTAs, active pills, badges, and key stats. Dark Navy (#00226B) for high-contrast hero panels and footers. Light background (#F6F9FC) for clean breathing room. Red is FORBIDDEN as a major color."
+  },
+  "typography": {
+    "heading_font": "Plus Jakarta Sans, sans-serif",
+    "body_font": "DM Sans, sans-serif",
+    "marathi_font": "Noto Sans Devanagari, Mukta, sans-serif",
+    "marathi_stack": "'Noto Sans Devanagari', 'Mukta', 'Hind', sans-serif",
+    "hierarchy": {
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15]",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-navy leading-[1.2]",
+      "h3_card": "text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight",
+      "h4_sub": "text-lg sm:text-xl font-medium text-slate-800",
+      "body": "text-base text-slate-600 leading-relaxed font-normal",
+      "caption_overline": "text-xs font-semibold uppercase tracking-[0.2em] text-orange-600"
+    },
+    "marathi_adjustment": "When Marathi language is active, increase line-height by 10-15% (leading-relaxed to leading-loose) and maintain font-weight at minimum 500 for crisp Devanagari rendering."
+  },
+  "spacing_and_layout": {
+    "container_padding": "px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto",
+    "section_vertical_spacing": "py-16 md:py-24 lg:py-32",
+    "card_padding": "p-6 sm:p-8",
+    "border_radius": "rounded-xl (12px) for cards, rounded-full for pills and CTAs, rounded-2xl for hero feature panels",
+    "grid_modes": {
+      "audience_selector": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6",
+      "destinations_and_medical": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
+      "why_astute_pillars": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
+      "dashboard": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    }
+  },
+  "bilingual_support": {
+    "default_language": "en",
+    "supported_languages": ["en", "mr"],
+    "routing": "URL routing with /mr/ prefix for Marathi pages",
+    "switcher_ui": "Compact pill component 'EN | मराठी' in header, toggle switch in footer. Display 'मराठी' explicitly, never 'MR'."
+  },
+  "navigation_and_header": {
+    "header_style": "Sticky top-0 z-50 backdrop-blur-xl bg-white/90 border-b border-slate-200/80 shadow-sm transition-all duration-200",
+    "desktop_nav": "Visible brand logo + main menu links (USA, Germany, Medical Careers, Career Counselling, About, Events, Blog) + Language Switcher ('EN | मराठी') + Primary CTA 'Book Free Counselling'",
+    "mobile_nav": "Header logo + language switcher + hamburger drawer. Fixed bottom CTA bar with 'WhatsApp Us' + 'Book Counselling'",
+    "floating_whatsapp": "Fixed bottom-right button (desktop) with pulse effect and quick chat tooltip."
+  },
+  "homepage_structure": [
+    "Sticky Header with Blur & Language Switcher",
+    "Hero Section (Split-screen or editorial grid with strong CTA 'Book Free Counselling' + 'Explore Programs')",
+    "Trust & Experience Banner (20+ Years, 10,000+ Students, 98% Visa Success)",
+    "Audience Pathway Selector (Student / Doctor / Parent / Working Professional)",
+    "Destinations Hub (USA, Germany)",
+    "Medical Career Pathways Visual Flow (MBBS → Profile → USMLE/Residency → Fellowship)",
+    "USA & Germany Flagship Programs Highlight",
+    "Why Astute (6 Pillars Grid)",
+    "Astute Journey Timeline (01 Understand → 06 Progress with interactive steps)",
+    "Testimonials Carousel with Filter Tabs (Students / Doctors / Parents)",
+    "Global Education Partner Network (Grayscale logo wall of Harvard, MIT, Stanford, Johns Hopkins, TU Munich, Heidelberg, Charité, LMU, RWTH Aachen)",
+    "Free Assessments Trio Cards (Career Counselling, Profile Evaluation, USMLE Assessment)",
+    "Webinars & Upcoming Events Hub",
+    "Knowledge Hub / Blog Highlights",
+    "FAQ Category Accordions",
+    "Smart Multi-Step Lead Form (7 Steps Modal / Dedicated Section)",
+    "Dark Navy Footer with 4 Columns + Social Links + Language Toggle"
+  ],
+  "visual_enhancers": {
+    "shadows": "shadow-sm for subtle definition, shadow-xl for dynamic lift on card hover",
+    "borders": "1px solid border-slate-200 with hover:border-blue-300 transition-colors",
+    "glassmorphism": "backdrop-blur-xl bg-white/80 border border-white/40 for floating pills and modals",
+    "motion": "Framer motion fade-up (y: 20 -> 0, duration: 0.4s), hover lift (-translate-y-1), step indicator highlight."
+  },
+  "image_urls": {
+    "hero_students": "https://images.unsplash.com/photo-1708578200684-3aa944b73237?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "medical_doctor": "https://images.unsplash.com/photo-1758691463582-11aea602cd4a?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "medical_counselling": "https://images.unsplash.com/photo-1758691462651-611d730c5272?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "career_counselling": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "group_study": "https://images.pexels.com/photos/5553065/pexels-photo-5553065.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "campus_architecture": "https://images.pexels.com/photos/20200756/pexels-photo-20200756.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+  },
+  "partner_logos": [
+    {"name": "Harvard University", "svg_text": "HARVARD"},
+    {"name": "Stanford University", "svg_text": "STANFORD"},
+    {"name": "Johns Hopkins Medicine", "svg_text": "JOHNS HOPKINS"},
+    {"name": "TU Munich", "svg_text": "TUM GERMANY"},
+    {"name": "Heidelberg University", "svg_text": "HEIDELBERG"},
+    {"name": "Charité Berlin", "svg_text": "CHARITÉ BERLIN"},
+    {"name": "LMU Munich", "svg_text": "LMU MUNICH"},
+    {"name": "RWTH Aachen", "svg_text": "RWTH AACHEN"}
+  ],
+  "testing_and_qa": {
+    "data_testid_convention": "kebab-case, role-based, e.g., 'header-language-switcher', 'hero-book-counselling-cta', 'audience-selector-doctor-card', 'lead-form-step-1-submit'"
+  },
+  "instructions_to_main_agent": "Implement a modular, responsive React app for Astute Academy with bilingual EN/MR support. Build dedicated pages for Homepage, USA, Germany, Medical Careers, Career Counselling, About, Leadership, Testimonials, Blog, Events, FAQ, Contact, Program details, and Admin CMS. Ensure all buttons and interactive elements have data-testid. Use Plus Jakarta Sans & DM Sans for typography, Shadcn components for forms/dialogs/calendars/selects, and Sonner for toasts."
+}
