@@ -20,13 +20,15 @@ export const translations = {
       germany: "Germany",
     },
     hero: {
-      eyebrow: "Global Education & Career Counselling",
-      title: "Your Global Career Starts With The Right Guidance.",
+      eyebrow: "Global education & career counselling",
+      title: "Your global career starts with the right guidance.",
+      highlight: "right",
       subtitle:
-        "Personalised education and career pathways for students, graduates and doctors — from India to leading universities and healthcare systems around the world.",
+        "Personalised education and career pathways for students, graduates and doctors — from India to the world's leading universities and healthcare systems.",
       primary: "Book Free Counselling",
       secondary: "Explore Programs",
-      trust: "30+ Years of Career & Global Education Experience",
+      trust: "Years of career & global education experience",
+      trustNumber: "25+",
     },
     audience: {
       title: "What are you planning next?",
@@ -234,12 +236,14 @@ export const translations = {
     },
     hero: {
       eyebrow: "ग्लोबल एज्युकेशन आणि करिअर समुपदेशन",
-      title: "तुमच्या जागतिक करिअरची सुरुवात योग्य मार्गदर्शनापासून करा.",
+      title: "तुमच्या जागतिक करिअरची सुरुवात योग्य मार्गदर्शनापासून होते.",
+      highlight: "योग्य",
       subtitle:
         "विद्यार्थी, पदवीधर आणि डॉक्टरांसाठी वैयक्तिक शिक्षण आणि करिअर मार्ग — भारतापासून जगातील आघाडीच्या विद्यापीठे आणि आरोग्य प्रणालींपर्यंत.",
       primary: "मोफत समुपदेशन घ्या",
       secondary: "कार्यक्रम पहा",
-      trust: "३०+ वर्षांचा करिअर आणि ग्लोबल एज्युकेशनचा अनुभव",
+      trust: "वर्षांचा करिअर आणि ग्लोबल एज्युकेशनचा अनुभव",
+      trustNumber: "२५+",
     },
     audience: {
       title: "तुम्ही पुढे काय ठरवत आहात?",

@@ -21,12 +21,11 @@ export default function Header({ onOpenLead }) {
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
   const links = [
-    { to: langPath(lang, "/usa"), label: t.nav.usa },
-    { to: langPath(lang, "/germany"), label: t.nav.germany },
+    { to: langPath(lang, "/programs"), label: t.nav.programs },
+    { to: langPath(lang, "/usa"), label: t.nav.destinations },
     { to: langPath(lang, "/medical-careers"), label: t.nav.medical },
     { to: langPath(lang, "/career-counselling"), label: t.nav.counselling },
-    { to: langPath(lang, "/blog"), label: t.nav.blog },
-    { to: langPath(lang, "/events"), label: t.nav.events },
+    { to: langPath(lang, "/blog"), label: t.nav.resources },
     { to: langPath(lang, "/about"), label: t.nav.about },
   ];
 
@@ -75,19 +74,20 @@ export default function Header({ onOpenLead }) {
                 href={`https://wa.me/${WA_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+                className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-brand-navy hover:text-brand-blue transition-colors"
                 data-testid="header-whatsapp"
               >
-                <MessageCircle className="w-4 h-4" />
-                <span className="hidden lg:inline">{t.nav.whatsapp}</span>
+                <MessageCircle className="w-4 h-4 text-brand-blue" />
+                <span>WhatsApp</span>
               </a>
 
               <button
                 onClick={onOpenLead}
                 data-testid="header-book-cta"
-                className="hidden md:inline-flex btn-orange px-4 lg:px-5 py-2.5 rounded-full text-sm font-semibold"
+                className="hidden md:inline-flex btn-orange px-4 lg:px-5 py-2.5 rounded-full text-sm font-semibold items-center gap-1.5"
               >
                 {t.nav.bookCta}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </button>
 
               <button

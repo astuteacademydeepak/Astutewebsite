@@ -8,7 +8,7 @@ import {
 import { useLang, langPath } from "../i18n";
 import { publicApi } from "../lib/api";
 
-const HERO_IMG = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1400&q=85";
+const HERO_IMG = "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&q=85";
 const USA_IMG = "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=900&q=80";
 const GERMANY_IMG = "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=900&q=80";
 const MED_IMG = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80";
@@ -16,65 +16,96 @@ const MED_IMG = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=
 /* ---------- HERO ---------- */
 export function Hero({ onOpenLead, onOpenPathway }) {
   const { lang, t } = useLang();
+  // Render title with highlighted word
+  const renderTitle = () => {
+    const { title, highlight } = t.hero;
+    if (!highlight || !title.includes(highlight)) return title;
+    const parts = title.split(highlight);
+    return (
+      <>
+        {parts[0]}
+        <span className="text-brand-blue">{highlight}</span>
+        {parts.slice(1).join(highlight)}
+      </>
+    );
+  };
+
+  const overlayCards = [
+    { label: lang === "mr" ? "देश" : "Destination", value: "USA", link: langPath(lang, "/usa") },
+    { label: lang === "mr" ? "देश" : "Destination", value: "Germany", link: langPath(lang, "/germany") },
+    { label: lang === "mr" ? "फोकस" : "Focus", value: lang === "mr" ? "मेडिकल करिअर" : "Medical Careers", link: langPath(lang, "/medical-careers") },
+  ];
+
   return (
-    <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-24 overflow-hidden hero-glow" data-testid="hero-section">
-      <div className="absolute inset-0 grid-noise opacity-60" />
+    <section className="relative pt-24 lg:pt-28 pb-14 lg:pb-20 overflow-hidden" data-testid="hero-section">
+      <div className="absolute inset-0 bg-brand-light" />
+      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-brand-orange/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full bg-brand-blue/10 blur-3xl pointer-events-none" />
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          <div className="lg:col-span-7 relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-brand-blue mb-6 shadow-sm animate-fade-up">
-              <Sparkles className="w-3.5 h-3.5 text-brand-orange" />
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* LEFT COLUMN */}
+          <div className="lg:col-span-6 relative z-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-xs sm:text-sm font-semibold text-brand-blue mb-7 shadow-sm animate-fade-up">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
               {t.hero.eyebrow}
             </div>
-            <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-navy leading-[1.05] tracking-tight text-balance animate-fade-up">
-              {t.hero.title}
+            <h1 className="font-display font-black text-5xl sm:text-6xl lg:text-7xl xl:text-[88px] text-brand-navy leading-[0.98] tracking-[-0.045em] text-balance animate-fade-up">
+              {renderTitle()}
             </h1>
-            <p className="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed animate-fade-up" style={{animationDelay: "0.1s"}}>
+            <p className="mt-7 text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed animate-fade-up" style={{animationDelay: "0.1s"}}>
               {t.hero.subtitle}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3 animate-fade-up" style={{animationDelay: "0.2s"}}>
-              <button onClick={onOpenLead} className="btn-orange inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm sm:text-base shadow-lg shadow-orange-500/20" data-testid="hero-book-cta">
-                {t.hero.primary} <ArrowRight className="w-4 h-4" />
+              <button onClick={onOpenLead} className="btn-orange inline-flex items-center gap-2 px-7 py-4 rounded-full font-semibold text-sm sm:text-base shadow-lg shadow-orange-500/25" data-testid="hero-book-cta">
+                {t.hero.primary} <ArrowUpRight className="w-4 h-4" />
               </button>
-              {onOpenPathway && (
-                <button onClick={onOpenPathway} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm sm:text-base border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white transition-colors" data-testid="hero-pathway-cta">
-                  <Sparkles className="w-4 h-4" /> {lang === "mr" ? "AI पथ शोधा" : "Find My Pathway"}
-                </button>
-              )}
+              <Link to={langPath(lang, "/programs")} className="inline-flex items-center gap-2 px-7 py-4 rounded-full font-semibold text-sm sm:text-base bg-white border border-slate-200 text-brand-navy hover:border-brand-navy transition-colors" data-testid="hero-explore-programs">
+                {t.hero.secondary} <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
-            <div className="mt-10 pt-6 border-t border-slate-200 max-w-md animate-fade-up" style={{animationDelay: "0.3s"}}>
-              <div className="flex items-center gap-3">
-                <div className="flex -space-x-2">
-                  {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-blue to-brand-navy border-2 border-white" />)}
-                </div>
-                <div className="text-xs">
-                  <div className="font-bold text-brand-navy text-sm">{t.hero.trust}</div>
-                </div>
-              </div>
+            <div className="mt-10 pt-6 flex items-center gap-3 animate-fade-up" style={{animationDelay: "0.3s"}}>
+              <div className="w-11 h-11 rounded-full bg-brand-navy text-white flex items-center justify-center font-display font-bold text-sm shrink-0">{t.hero.trustNumber}</div>
+              <div className="text-sm text-slate-700 font-medium max-w-xs leading-snug">{t.hero.trust}</div>
             </div>
           </div>
 
-          <div className="lg:col-span-5 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-navy/20 aspect-[4/5] animate-fade-in">
+          {/* RIGHT COLUMN — Photo with glass overlay cards */}
+          <div className="lg:col-span-6 relative">
+            <div className="relative rounded-[28px] overflow-hidden shadow-2xl shadow-brand-navy/20 aspect-[5/4] lg:aspect-[6/5] animate-fade-in">
               <img src={HERO_IMG} alt="Astute Academy students" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-brand-navy/40 via-transparent to-transparent" />
-              <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full bg-brand-orange flex items-center justify-center text-white"><Award className="w-5 h-5" /></div>
-                  <div>
-                    <div className="font-display font-bold text-brand-navy text-sm">Personalised Strategy</div>
-                    <div className="text-xs text-slate-500">One mentor. One plan. One admission.</div>
-                  </div>
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/40 via-transparent to-transparent" />
+
+              {/* Glass overlay cards */}
+              <div className="absolute bottom-4 lg:bottom-6 inset-x-4 lg:inset-x-6 grid grid-cols-3 gap-2 lg:gap-3">
+                {overlayCards.map((c, i) => (
+                  <Link
+                    key={i}
+                    to={c.link}
+                    data-testid={`hero-overlay-${c.value.toLowerCase()}`}
+                    className="group backdrop-blur-xl bg-brand-navy/50 hover:bg-brand-navy/70 border border-white/20 rounded-2xl p-3 lg:p-4 transition-all"
+                  >
+                    <div className="text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.18em] text-white/70 mb-1">{c.label}</div>
+                    <div className="font-display font-bold text-white text-sm lg:text-lg leading-tight group-hover:text-brand-orange transition-colors">{c.value}</div>
+                  </Link>
+                ))}
               </div>
-            </div>
-            <div className="hidden xl:block absolute -top-4 -left-8 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 w-52">
-              <div className="text-xs text-brand-orange font-semibold uppercase tracking-widest mb-1">USA · Germany</div>
-              <div className="font-display font-bold text-brand-navy text-base leading-tight">End-to-end mentoring</div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Floating Pathway Assistant chip */}
+      {onOpenPathway && (
+        <button
+          onClick={onOpenPathway}
+          data-testid="floating-pathway-assistant"
+          className="hidden md:inline-flex fixed bottom-6 left-6 z-40 items-center gap-2 pl-3 pr-5 py-3 rounded-full bg-brand-navy text-white shadow-xl shadow-brand-navy/25 hover:bg-brand-blue transition-colors group"
+        >
+          <span className="w-8 h-8 rounded-full bg-brand-orange flex items-center justify-center"><Sparkles className="w-4 h-4" /></span>
+          <span className="font-semibold text-sm">{lang === "mr" ? "पथ सहाय्यक" : "Pathway Assistant"}</span>
+        </button>
+      )}
     </section>
   );
 }
