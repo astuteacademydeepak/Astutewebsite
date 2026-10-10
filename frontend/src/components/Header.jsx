@@ -46,8 +46,8 @@ export default function Header({ onOpenLead }) {
     { to: langPath(lang, "/about"), label: t.nav.about, type: "link" },
   ];
 
-  const linkClass = "relative inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-blue transition-colors rounded-lg";
-  const linkUnderline = "after:absolute after:left-3 after:right-3 after:bottom-1 after:h-0.5 after:bg-brand-orange after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left";
+  const linkClass = "relative inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-brand-blue hover:bg-brand-light transition-all duration-200 rounded-full";
+  const linkUnderline = "after:absolute after:left-1/2 after:bottom-0 after:h-[3px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-brand-orange hover:after:w-6 after:transition-all after:duration-300";
 
   return (
     <>
