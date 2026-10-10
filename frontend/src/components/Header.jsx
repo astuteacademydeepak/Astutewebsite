@@ -39,7 +39,7 @@ export default function Header({ onOpenLead }) {
           <div className="flex items-center justify-between h-16 lg:h-20">
             <Link to={langPath(lang, "/")} className="flex items-center gap-2" data-testid="header-logo">
               <img
-                src="https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/wyk1m34k_Astute%20logo%201.png"
+                src="https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/4cff30af918d3aab_Astute%20Academy%20Logo.png"
                 alt="Astute Academy"
                 className="h-10 lg:h-12 w-auto"
                 style={{ mixBlendMode: "multiply" }}

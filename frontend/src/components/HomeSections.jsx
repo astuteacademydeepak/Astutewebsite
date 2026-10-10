@@ -8,7 +8,7 @@ import {
 import { useLang, langPath } from "../i18n";
 import { publicApi } from "../lib/api";
 
-const HERO_IMG = "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&q=85";
+const HERO_IMG = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1400&q=85";
 const USA_IMG = "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=900&q=80";
 const GERMANY_IMG = "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=900&q=80";
 const MED_IMG = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80";

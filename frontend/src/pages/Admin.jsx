@@ -3,7 +3,7 @@ import { api } from "../lib/api";
 import { LogOut, Plus, Trash2, Users, Mail, CalendarDays, FileText, Star } from "lucide-react";
 import { toast } from "sonner";
 
-const LOGO = "https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/wyk1m34k_Astute%20logo%201.png";
+const LOGO = "https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/4cff30af918d3aab_Astute%20Academy%20Logo.png";
 
 function useAuthApi(token) {
   return useCallback((cfg) => api({ ...cfg, headers: { ...(cfg.headers || {}), Authorization: `Bearer ${token}` } }), [token]);
