@@ -15,7 +15,7 @@ const HERO_IMAGES = [
 ];
 const USA_IMG = "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=900&q=80";
 const GERMANY_IMG = "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=900&q=80";
-const MED_IMG = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80";
+const MED_IMG = "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&q=85";
 
 /* ---------- HERO ---------- */
 export function Hero({ onOpenLead, onOpenPathway }) {
