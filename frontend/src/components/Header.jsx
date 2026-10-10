@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X, MessageCircle, ChevronDown, Flag } from "lucide-react";
 import { useLang, langPath } from "../i18n";
 
 const WA_NUMBER = "918899117757";
@@ -10,6 +10,8 @@ export default function Header({ onOpenLead }) {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [destOpen, setDestOpen] = useState(false);
+  const [mDestOpen, setMDestOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -18,16 +20,34 @@ export default function Header({ onOpenLead }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setOpen(false); }, [location.pathname]);
+  useEffect(() => { setOpen(false); setDestOpen(false); setMDestOpen(false); }, [location.pathname]);
+
+  const destinations = [
+    {
+      to: langPath(lang, "/usa"),
+      label: lang === "mr" ? "USA शिक्षण" : "USA Education",
+      desc: lang === "mr" ? "Bachelor's, Master's, Residency आणि USMLE" : "Bachelor's, Master's, Residency & USMLE",
+      flag: "🇺🇸",
+    },
+    {
+      to: langPath(lang, "/germany"),
+      label: lang === "mr" ? "Germany शिक्षण" : "Germany Education",
+      desc: lang === "mr" ? "शुल्कमुक्त विद्यापीठे, STEM आणि इंग्रजी-माध्यम" : "Tuition-free universities, STEM & English-medium",
+      flag: "🇩🇪",
+    },
+  ];
 
   const links = [
-    { to: langPath(lang, "/programs"), label: t.nav.programs },
-    { to: langPath(lang, "/usa"), label: t.nav.destinations },
-    { to: langPath(lang, "/medical-careers"), label: t.nav.medical },
-    { to: langPath(lang, "/career-counselling"), label: t.nav.counselling },
-    { to: langPath(lang, "/blog"), label: t.nav.resources },
-    { to: langPath(lang, "/about"), label: t.nav.about },
+    { to: langPath(lang, "/programs"), label: t.nav.programs, type: "link" },
+    { label: t.nav.destinations, type: "dropdown", items: destinations },
+    { to: langPath(lang, "/medical-careers"), label: t.nav.medical, type: "link" },
+    { to: langPath(lang, "/career-counselling"), label: t.nav.counselling, type: "link" },
+    { to: langPath(lang, "/blog"), label: t.nav.resources, type: "link" },
+    { to: langPath(lang, "/about"), label: t.nav.about, type: "link" },
   ];
+
+  const linkClass = "relative inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-blue transition-colors rounded-lg";
+  const linkUnderline = "after:absolute after:left-3 after:right-3 after:bottom-1 after:h-0.5 after:bg-brand-orange after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left";
 
   return (
     <>
@@ -46,17 +66,60 @@ export default function Header({ onOpenLead }) {
               />
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-1">
-              {links.map((l) => (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  data-testid={`nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-blue transition-colors rounded-lg hover:bg-slate-50"
-                >
-                  {l.label}
-                </Link>
-              ))}
+            <nav className="hidden lg:flex items-center gap-0.5">
+              {links.map((l) => {
+                if (l.type === "dropdown") {
+                  return (
+                    <div
+                      key={l.label}
+                      className="relative"
+                      onMouseEnter={() => setDestOpen(true)}
+                      onMouseLeave={() => setDestOpen(false)}
+                      data-testid="nav-destinations-dropdown"
+                    >
+                      <button
+                        className={`${linkClass} ${linkUnderline} ${destOpen ? "text-brand-blue" : ""}`}
+                        onClick={() => setDestOpen((v) => !v)}
+                      >
+                        {l.label}
+                        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${destOpen ? "rotate-180" : ""}`} />
+                      </button>
+                      <div
+                        className={`absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[420px] transition-all origin-top ${destOpen ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}
+                      >
+                        <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-2">
+                          {l.items.map((it) => (
+                            <Link
+                              key={it.to}
+                              to={it.to}
+                              data-testid={`nav-dest-${it.label.toLowerCase().split(' ')[0]}`}
+                              className="flex items-start gap-3 p-3 rounded-xl hover:bg-brand-light transition-colors group"
+                            >
+                              <div className="w-11 h-11 rounded-xl bg-brand-light group-hover:bg-white flex items-center justify-center text-2xl shrink-0 transition-colors">
+                                {it.flag}
+                              </div>
+                              <div className="flex-1">
+                                <div className="font-display font-bold text-brand-navy group-hover:text-brand-blue transition-colors">{it.label}</div>
+                                <div className="text-xs text-slate-500 mt-0.5 leading-relaxed">{it.desc}</div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+                return (
+                  <Link
+                    key={l.to}
+                    to={l.to}
+                    data-testid={`nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
+                    className={`${linkClass} ${linkUnderline}`}
+                  >
+                    {l.label}
+                  </Link>
+                );
+              })}
             </nav>
 
             <div className="flex items-center gap-2">
@@ -116,11 +179,32 @@ export default function Header({ onOpenLead }) {
               </button>
             </div>
             <nav className="flex-1 overflow-y-auto p-4 space-y-1">
-              {links.map((l) => (
-                <Link key={l.to} to={l.to} className="block px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-800 font-medium">
-                  {l.label}
-                </Link>
-              ))}
+              {links.map((l) => {
+                if (l.type === "dropdown") {
+                  return (
+                    <div key={l.label}>
+                      <button onClick={() => setMDestOpen((v) => !v)} className="w-full flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-800 font-medium">
+                        {l.label}
+                        <ChevronDown className={`w-4 h-4 transition-transform ${mDestOpen ? "rotate-180" : ""}`} />
+                      </button>
+                      {mDestOpen && (
+                        <div className="pl-4 space-y-1">
+                          {l.items.map((it) => (
+                            <Link key={it.to} to={it.to} className="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-slate-50 text-slate-700">
+                              <span>{it.flag}</span><span>{it.label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                return (
+                  <Link key={l.to} to={l.to} className="block px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-800 font-medium">
+                    {l.label}
+                  </Link>
+                );
+              })}
               <Link to={langPath(lang, "/contact")} className="block px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-800 font-medium">
                 {t.nav.contact}
               </Link>
