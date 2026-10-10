@@ -159,7 +159,7 @@ export default function About() {
             </div>
             <div className="md:col-span-3 p-6 lg:p-10 flex flex-col justify-center">
               <div className="text-xs font-bold uppercase tracking-[0.24em] text-brand-orange mb-2">{isMr ? "अध्यक्ष" : "Chairman"}</div>
-              <h3 className="font-display font-extrabold text-3xl lg:text-4xl text-brand-navy tracking-tight mb-3">Dr. Tushar Vinod Deoras</h3>
+              <h3 className="font-display font-extrabold text-3xl lg:text-4xl text-brand-navy tracking-tight mb-3">Dr. Tushar Deoras</h3>
               <p className="text-slate-600 leading-relaxed mb-4">
                 {isMr
                   ? "अ‍ॅस्ट्यूट अकादमीचे अध्यक्ष. तीन दशकांहून अधिक अनुभव — करिअर समुपदेशन, ग्लोबल एज्युकेशन आणि मेडिकल करिअर मार्गदर्शनात. हजारो विद्यार्थ्यांना जागतिक विद्यापीठे आणि आरोग्य प्रणालींपर्यंत पोहोचण्यास मार्गदर्शन केले आहे."
@@ -200,7 +200,7 @@ export default function About() {
                 className="w-full max-w-[240px] rounded-2xl object-cover aspect-[3/4] shadow-2xl"
               />
               <div className="mt-4">
-                <div className="font-display font-bold text-lg">Dr. Tushar Vinod Deoras</div>
+                <div className="font-display font-bold text-lg">Dr. Tushar Deoras</div>
                 <div className="text-sm text-white/70">{isMr ? "अध्यक्ष, अ‍ॅस्ट्यूट अकादमी" : "Chairman, Astute Academy"}</div>
               </div>
             </div>
