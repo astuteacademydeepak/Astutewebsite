@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLang } from "../i18n";
-import { Award, Compass, Briefcase, Heart, Linkedin, ChevronDown, Trophy } from "lucide-react";
+import { Award, Compass, Briefcase, Heart, Linkedin, Trophy } from "lucide-react";
 
 const DEORAS_PHOTO = "https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/s2gttbql__RAJ39521.webp";
 
@@ -32,57 +32,50 @@ const AWARDS = [
 ];
 
 function AwardsSection({ isMr }) {
-  const [open, setOpen] = useState(false);
   const [lightbox, setLightbox] = useState(null);
 
   return (
-    <section className="py-16 lg:py-20 bg-brand-light" data-testid="awards-section">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <button
-          onClick={() => setOpen(!open)}
-          className="w-full bg-white rounded-3xl border border-slate-100 p-6 lg:p-8 flex items-center gap-5 hover:border-brand-orange transition-colors group"
-          data-testid="awards-toggle"
-        >
+    <section className="py-16 lg:py-24 bg-brand-light" data-testid="awards-section">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-start gap-5 mb-10">
           <div className="w-14 h-14 rounded-2xl bg-brand-orange/10 text-brand-orange flex items-center justify-center shrink-0">
             <Trophy className="w-7 h-7" />
           </div>
-          <div className="text-left flex-1">
-            <div className="text-xs font-bold uppercase tracking-[0.24em] text-brand-orange mb-1">{isMr ? "मान्यता" : "Recognition"}</div>
-            <h2 className="font-display font-extrabold text-2xl lg:text-3xl text-brand-navy tracking-tight">
+          <div>
+            <div className="text-xs font-bold uppercase tracking-[0.24em] text-brand-orange mb-2">{isMr ? "मान्यता" : "Recognition"}</div>
+            <h2 className="font-display font-extrabold text-3xl lg:text-5xl text-brand-navy tracking-tight">
               {isMr ? "पुरस्कार आणि सन्मान" : "Awards We Have Received"}
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
-              {isMr ? `${AWARDS.length} पुरस्कार — २०१३ ते २०१९ (क्लिक करा)` : `${AWARDS.length} awards received between 2013 – 2019 — click to view`}
+            <p className="text-sm lg:text-base text-slate-600 mt-2 max-w-2xl">
+              {isMr
+                ? `अ‍ॅस्ट्यूट अकादमीला मिळालेले ${AWARDS.length} मान्यताप्राप्त पुरस्कार आणि सन्मान.`
+                : `${AWARDS.length} recognitions received by Astute Academy for excellence in career counselling and education.`}
             </p>
           </div>
-          <ChevronDown className={`w-6 h-6 text-slate-400 shrink-0 transition-transform ${open ? "rotate-180" : ""}`} />
-        </button>
+        </div>
 
-        {open && (
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 animate-fade-up" data-testid="awards-grid">
-            {AWARDS.map((a, i) => (
-              <div
-                key={i}
-                data-testid={`award-card-${i}`}
-                className="bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-brand-orange transition-all shadow-sm hover:shadow-lg flex flex-col"
-              >
-                <button onClick={() => setLightbox(a)} className="aspect-[4/3] overflow-hidden bg-brand-light">
-                  <img
-                    src={a.img}
-                    alt={a.title}
-                    loading="lazy"
-                    className="w-full h-full object-contain p-2 hover:scale-105 transition-transform duration-500"
-                  />
-                </button>
-                <div className="p-5 flex-1 flex flex-col">
-                  <div className="text-xs font-bold uppercase tracking-widest text-brand-orange mb-1">{a.year}</div>
-                  <h3 className="font-display font-bold text-brand-navy text-base leading-snug mb-2">{a.title}</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed line-clamp-3">{a.body}</p>
-                </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" data-testid="awards-grid">
+          {AWARDS.map((a, i) => (
+            <div
+              key={i}
+              data-testid={`award-card-${i}`}
+              className="bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-brand-orange transition-all shadow-sm hover:shadow-lg flex flex-col"
+            >
+              <button onClick={() => setLightbox(a)} className="aspect-[4/3] overflow-hidden bg-brand-light">
+                <img
+                  src={a.img}
+                  alt={a.title}
+                  loading="lazy"
+                  className="w-full h-full object-contain p-2 hover:scale-105 transition-transform duration-500"
+                />
+              </button>
+              <div className="p-5 flex-1 flex flex-col">
+                <h3 className="font-display font-bold text-brand-navy text-base leading-snug mb-2">{a.title}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed line-clamp-3">{a.body}</p>
               </div>
-            ))}
-          </div>
-        )}
+            </div>
+          ))}
+        </div>
       </div>
 
       {lightbox && (
@@ -90,7 +83,6 @@ function AwardsSection({ isMr }) {
           <div className="relative max-w-3xl w-full" onClick={(e) => e.stopPropagation()}>
             <img src={lightbox.img} alt={lightbox.title} className="w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl bg-white" />
             <div className="mt-4 text-center text-white">
-              <div className="text-xs font-bold uppercase tracking-widest text-brand-orange mb-1">{lightbox.year}</div>
               <div className="font-display font-bold text-xl">{lightbox.title}</div>
               <div className="text-sm text-white/70 mt-1 max-w-xl mx-auto">{lightbox.body}</div>
             </div>

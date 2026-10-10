@@ -8,7 +8,11 @@ import {
 import { useLang, langPath } from "../i18n";
 import { publicApi } from "../lib/api";
 
-const HERO_IMG = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1400&q=85";
+const HERO_IMAGES = [
+  { src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1400&q=85", alt: "Students studying together" },
+  { src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=85", alt: "Career counselling session" },
+  { src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1400&q=85", alt: "Graduation day" },
+];
 const USA_IMG = "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=900&q=80";
 const GERMANY_IMG = "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=900&q=80";
 const MED_IMG = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80";
@@ -16,6 +20,13 @@ const MED_IMG = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=
 /* ---------- HERO ---------- */
 export function Hero({ onOpenLead, onOpenPathway }) {
   const { lang, t } = useLang();
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setIdx((i) => (i + 1) % HERO_IMAGES.length), 5000);
+    return () => clearInterval(id);
+  }, []);
+
   // Render title with highlighted word
   const renderTitle = () => {
     const { title, highlight } = t.hero;
@@ -70,11 +81,31 @@ export function Hero({ onOpenLead, onOpenPathway }) {
             </div>
           </div>
 
-          {/* RIGHT COLUMN — Photo with glass overlay cards */}
+          {/* RIGHT COLUMN — Rotating photo with glass overlay cards */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-[28px] overflow-hidden shadow-2xl shadow-brand-navy/20 aspect-[5/4] lg:aspect-[6/5] animate-fade-in">
-              <img src={HERO_IMG} alt="Astute Academy students" className="w-full h-full object-cover" />
+            <div className="relative rounded-[28px] overflow-hidden shadow-2xl shadow-brand-navy/20 aspect-[5/4] lg:aspect-[6/5] animate-fade-in bg-brand-navy" data-testid="hero-rotator">
+              {HERO_IMAGES.map((img, i) => (
+                <img
+                  key={img.src}
+                  src={img.src}
+                  alt={img.alt}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1200ms] ease-in-out ${i === idx ? "opacity-100" : "opacity-0"}`}
+                />
+              ))}
               <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/40 via-transparent to-transparent" />
+
+              {/* Rotator dots */}
+              <div className="absolute top-4 right-4 flex gap-1.5" data-testid="hero-rotator-dots">
+                {HERO_IMAGES.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setIdx(i)}
+                    aria-label={`Hero slide ${i + 1}`}
+                    data-testid={`hero-rotator-dot-${i}`}
+                    className={`h-1.5 rounded-full transition-all ${i === idx ? "w-6 bg-white" : "w-1.5 bg-white/50 hover:bg-white/80"}`}
+                  />
+                ))}
+              </div>
 
               {/* Glass overlay cards */}
               <div className="absolute bottom-4 lg:bottom-6 inset-x-4 lg:inset-x-6 grid grid-cols-3 gap-2 lg:gap-3">
