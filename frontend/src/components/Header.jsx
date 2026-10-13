@@ -46,8 +46,8 @@ export default function Header({ onOpenLead }) {
     { to: langPath(lang, "/about"), label: t.nav.about, type: "link" },
   ];
 
-  const linkClass = "relative inline-flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-brand-blue hover:bg-brand-light transition-all duration-200 rounded-full";
-  const linkUnderline = "after:absolute after:left-1/2 after:bottom-0 after:h-[3px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-brand-orange hover:after:w-6 after:transition-all after:duration-300";
+  const linkClass = "nav-glass-tab relative inline-flex items-center gap-1 whitespace-nowrap px-3 xl:px-3.5 py-2 rounded-full text-[14px] font-medium leading-none text-slate-700";
+  const linkUnderline = "";
 
   return (
     <>
@@ -57,7 +57,7 @@ export default function Header({ onOpenLead }) {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            <Link to={langPath(lang, "/")} className="flex items-center gap-2" data-testid="header-logo">
+            <Link to={langPath(lang, "/")} className="flex items-center gap-2 shrink-0 mr-4" data-testid="header-logo">
               <img
                 src="https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/4cff30af918d3aab_Astute%20Academy%20Logo.png"
                 alt="Astute Academy"
@@ -66,7 +66,7 @@ export default function Header({ onOpenLead }) {
               />
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-0.5">
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 flex-nowrap" data-testid="desktop-nav">
               {links.map((l) => {
                 if (l.type === "dropdown") {
                   return (
@@ -78,7 +78,7 @@ export default function Header({ onOpenLead }) {
                       data-testid="nav-destinations-dropdown"
                     >
                       <button
-                        className={`${linkClass} ${linkUnderline} ${destOpen ? "text-brand-blue" : ""}`}
+                        className={`${linkClass} ${linkUnderline} ${destOpen ? "is-open" : ""}`}
                         onClick={() => setDestOpen((v) => !v)}
                       >
                         {l.label}
@@ -122,7 +122,7 @@ export default function Header({ onOpenLead }) {
               })}
             </nav>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0 ml-3">
               <button
                 onClick={toggleLang}
                 data-testid="header-language-switcher"
@@ -138,7 +138,7 @@ export default function Header({ onOpenLead }) {
                 href={`https://wa.me/${WA_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-brand-navy hover:text-brand-blue transition-colors"
+                className="hidden md:inline-flex lg:hidden 2xl:inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-brand-navy hover:text-brand-blue transition-colors"
                 data-testid="header-whatsapp"
               >
                 <MessageCircle className="w-4 h-4 text-brand-blue" />
@@ -148,7 +148,7 @@ export default function Header({ onOpenLead }) {
               <button
                 onClick={onOpenLead}
                 data-testid="header-book-cta"
-                className="hidden md:inline-flex btn-orange px-4 lg:px-5 py-2.5 rounded-full text-sm font-semibold items-center gap-1.5"
+                className="hidden md:inline-flex lg:hidden xl:inline-flex whitespace-nowrap btn-orange px-4 lg:px-5 py-2.5 rounded-full text-sm font-semibold items-center gap-1.5"
               >
                 {t.nav.bookCta}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
