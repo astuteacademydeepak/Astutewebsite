@@ -6,7 +6,7 @@ export default function Footer() {
   const { lang, t, toggleLang } = useLang();
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-brand-navy text-white pt-20 pb-8" data-testid="site-footer">
+    <footer className="bg-brand-navy text-white pt-20 pb-24" data-testid="site-footer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14">
           <div className="lg:col-span-2 max-w-md">

@@ -58,3 +58,7 @@ Complete redesign and rebuild of https://www.astuteacademy.com/ as a premium, mo
 - Desktop nav tabs: Inter Medium 500 at 14px, kept on one line. Each tab is its own frosted glass pill (light blur, faint border, soft shadow). On hover, or while the Destinations menu is open, text turns #026BC0 with a blue glass highlight and a 1px lift. The orange underline was removed and the current page's tab is not highlighted.
 - Header fits without overflow from 1024 to 1920px: WhatsApp link shows at 2xl and up, CTA at xl and up (both still in the mobile drawer and floating button).
 - Backlog: P1 SEO (hreflang, schema), P1 Analytics (GA4/GTM/Meta Pixel), P2 CAPTCHA + input sanitization.
+
+## 2026-06 — Sticky counselling bar
+- New slim bottom bar on all screen sizes (Overlays.jsx). It appears after 600px of scrolling and can be dismissed with X; the dismissal lasts for the browser session (sessionStorage `astute_sticky_bar_dismissed`). The CTA opens the lead form, and phones also get a WhatsApp icon. Text is bilingual (i18n `stickyBar`).
+- Replaced the old always-on mobile bottom bar. The floating WhatsApp and Pathway Assistant buttons lift while the bar is visible (`html[data-sticky-bar="on"] .float-lift`). The footer has extra bottom padding so the bar doesn't cover it.

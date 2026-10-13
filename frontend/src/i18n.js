@@ -19,6 +19,11 @@ export const translations = {
       usa: "USA",
       germany: "Germany",
     },
+    stickyBar: {
+      text: "Not sure which path fits you? Talk to an Astute counsellor — it's free.",
+      short: "Free 1:1 career guidance",
+      dismiss: "Dismiss",
+    },
     hero: {
       eyebrow: "Global education & career counselling",
       title: "Your global career starts with the right guidance.",
@@ -233,6 +238,11 @@ export const translations = {
       whatsapp: "WhatsApp",
       usa: "USA",
       germany: "Germany",
+    },
+    stickyBar: {
+      text: "कोणता मार्ग योग्य आहे याबद्दल खात्री नाही? Astute समुपदेशकांशी बोला — अगदी मोफत.",
+      short: "मोफत 1:1 करिअर मार्गदर्शन",
+      dismiss: "बंद करा",
     },
     hero: {
       eyebrow: "ग्लोबल एज्युकेशन आणि करिअर समुपदेशन",

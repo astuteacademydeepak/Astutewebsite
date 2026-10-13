@@ -70,7 +70,7 @@ function Shell() {
   return (
     <>
       <Header onOpenLead={openLead} onOpenPathway={openPathway} />
-      <main className="pb-20 md:pb-0">
+      <main>
         <Routes>
           {["/", "/mr"].map((p) => <Route key={p} path={p} element={<Home onOpenLead={openLead} onOpenPathway={openPathway} />} />)}
           {["/usa", "/mr/usa"].map((p) => <Route key={p} path={p} element={<USAPage onOpenLead={openLead} />} />)}

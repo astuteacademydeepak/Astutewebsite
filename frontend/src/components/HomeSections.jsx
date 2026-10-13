@@ -131,7 +131,7 @@ export function Hero({ onOpenLead, onOpenPathway }) {
         <button
           onClick={onOpenPathway}
           data-testid="floating-pathway-assistant"
-          className="hidden md:inline-flex fixed bottom-6 left-6 z-40 items-center gap-2 pl-3 pr-5 py-3 rounded-full bg-brand-navy text-white shadow-xl shadow-brand-navy/25 hover:bg-brand-blue transition-colors group"
+          className="hidden md:inline-flex fixed bottom-6 left-6 z-40 float-lift items-center gap-2 pl-3 pr-5 py-3 rounded-full bg-brand-navy text-white shadow-xl shadow-brand-navy/25 hover:bg-brand-blue group"
         >
           <span className="w-8 h-8 rounded-full bg-brand-orange flex items-center justify-center"><Sparkles className="w-4 h-4" /></span>
           <span className="font-semibold text-sm">{lang === "mr" ? "पथ सहाय्यक" : "Pathway Assistant"}</span>
