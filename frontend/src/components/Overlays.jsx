@@ -34,7 +34,8 @@ function StickyBar({ visible, onDismiss, onOpenLead, waLink, t }) {
       <div className="bg-white/90 backdrop-blur-xl border-t border-slate-200/80 shadow-[0_-8px_24px_rgba(15,23,42,0.08)]">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center gap-3">
           <span className="hidden sm:inline-block w-2 h-2 rounded-full bg-brand-orange animate-pulse shrink-0" />
-          <p className="flex-1 min-w-0 line-clamp-2 md:truncate text-xs sm:text-sm leading-tight font-medium text-brand-navy" data-testid="sticky-bar-text">
+          <span className="flex-1 min-[420px]:hidden" />
+          <p className="hidden min-[420px]:block flex-1 min-w-0 line-clamp-2 md:truncate text-xs sm:text-sm leading-tight font-medium text-brand-navy" data-testid="sticky-bar-text">
             <span className="hidden md:inline">{t.stickyBar.text}</span>
             <span className="md:hidden">{t.stickyBar.short}</span>
           </p>

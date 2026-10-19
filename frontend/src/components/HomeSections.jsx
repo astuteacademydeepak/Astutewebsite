@@ -148,7 +148,7 @@ export function AudiencePathway({ onOpenLead }) {
     { icon: GraduationCap, ...t.audience.student, color: "from-brand-blue to-blue-700" },
     { icon: Stethoscope, ...t.audience.doctor, color: "from-brand-orange to-red-500" },
     { icon: Users, ...t.audience.parent, color: "from-brand-navy to-blue-900" },
-    { icon: Briefcase, ...t.audience.professional, color: "from-emerald-600 to-teal-700" },
+    { icon: Briefcase, ...t.audience.professional, color: "from-[#026BC0] to-brand-navy" },
   ];
   return (
     <section className="py-16 lg:py-24 bg-brand-light" data-testid="audience-pathway">
@@ -160,7 +160,7 @@ export function AudiencePathway({ onOpenLead }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {items.map((it, i) => (
-            <button key={i} onClick={onOpenLead} data-testid={`audience-card-${i}`} className="text-left bg-white rounded-2xl p-6 border border-slate-100 card-hover group">
+            <button key={i} onClick={onOpenLead} data-testid={`audience-card-${i}`} className="text-left flex flex-col items-start justify-start bg-white rounded-2xl p-6 border border-slate-100 card-hover group">
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${it.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                 <it.icon className="w-6 h-6 text-white" />
               </div>

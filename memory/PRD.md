@@ -62,3 +62,7 @@ Complete redesign and rebuild of https://www.astuteacademy.com/ as a premium, mo
 ## 2026-06 — Sticky counselling bar
 - New slim bottom bar on all screen sizes (Overlays.jsx). It appears after 600px of scrolling and can be dismissed with X; the dismissal lasts for the browser session (sessionStorage `astute_sticky_bar_dismissed`). The CTA opens the lead form, and phones also get a WhatsApp icon. Text is bilingual (i18n `stickyBar`).
 - Replaced the old always-on mobile bottom bar. The floating WhatsApp and Pathway Assistant buttons lift while the bar is visible (`html[data-sticky-bar="on"] .float-lift`). The footer has extra bottom padding so the bar doesn't cover it.
+
+## 2026-06 — Icon visibility fix
+- Root cause: brand colours only existed as CSS vars/custom classes, so `from-brand-*` gradients and `/opacity` variants produced no CSS. Added `brand` colours to tailwind.config.js, which fixes the audience icons, the destination card overlays and the Pathway Assistant header gradient.
+- Professional icon no longer green (now #026BC0 → navy). Audience cards align to the top. The sticky bar text is hidden below 420px.
