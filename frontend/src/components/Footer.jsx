@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14">
           <div className="lg:col-span-2 max-w-md">
             <img
-              src="https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/4cff30af918d3aab_Astute%20Academy%20Logo.png"
+              src="https://customer-assets-4nw71qhi.emergentagent.net/job_astute-rebuild/artifacts/ce2da6b5892696c3_Astute%20logo%20New_H.png"
               alt="Astute Academy"
               className="h-14 w-auto mb-5 brightness-0 invert"
             />

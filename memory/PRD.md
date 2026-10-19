@@ -66,3 +66,6 @@ Complete redesign and rebuild of https://www.astuteacademy.com/ as a premium, mo
 ## 2026-06 — Icon visibility fix
 - Root cause: brand colours only existed as CSS vars/custom classes, so `from-brand-*` gradients and `/opacity` variants produced no CSS. Added `brand` colours to tailwind.config.js, which fixes the audience icons, the destination card overlays and the Pathway Assistant header gradient.
 - Professional icon no longer green (now #026BC0 → navy). Audience cards align to the top. The sticky bar text is hidden below 420px.
+
+## 2026-06 — Logo update
+- Replaced the logo in Header, Footer (white version) and Admin with the new transparent `Astute logo New_H.png`. Removed the multiply-blend workaround.
