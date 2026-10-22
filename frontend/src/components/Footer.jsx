@@ -34,6 +34,9 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-white/70">
               <li><Link to={langPath(lang, "/usa")} className="hover:text-brand-orange">USA</Link></li>
               <li><Link to={langPath(lang, "/germany")} className="hover:text-brand-orange">Germany</Link></li>
+              <li><Link to={langPath(lang, "/uk")} className="hover:text-brand-orange">UK</Link></li>
+              <li><Link to={langPath(lang, "/canada")} className="hover:text-brand-orange">Canada</Link></li>
+              <li><Link to={langPath(lang, "/australia")} className="hover:text-brand-orange">Australia</Link></li>
               <li><Link to={langPath(lang, "/medical-careers")} className="hover:text-brand-orange">{t.nav.medical}</Link></li>
               <li><Link to={langPath(lang, "/career-counselling")} className="hover:text-brand-orange">{t.nav.counselling}</Link></li>
             </ul>

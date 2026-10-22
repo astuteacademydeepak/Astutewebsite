@@ -11,6 +11,7 @@ import { publicApi } from "./lib/api";
 
 import Home from "./pages/Home";
 import { USAPage, GermanyPage, MedicalPage, CounsellingPage } from "./pages/Destinations";
+import { UKPage, CanadaPage, AustraliaPage } from "./pages/MoreDestinations";
 import About from "./pages/About";
 import { BlogList, BlogDetail } from "./pages/Blog";
 import Events from "./pages/Events";
@@ -30,6 +31,9 @@ const TITLES = {
   "/": "Astute Academy — Global Education & Career Counselling",
   "/usa": "Study in USA — Astute Academy",
   "/germany": "Study in Germany — Astute Academy",
+  "/uk": "Study in the UK — Astute Academy",
+  "/canada": "Study in Canada — Astute Academy",
+  "/australia": "Study in Australia — Astute Academy",
   "/medical-careers": "Medical Careers — USMLE, Residency & Research — Astute Academy",
   "/career-counselling": "Career Counselling — Astute Academy",
   "/about": "About — Astute Academy",
@@ -75,6 +79,9 @@ function Shell() {
           {["/", "/mr"].map((p) => <Route key={p} path={p} element={<Home onOpenLead={openLead} onOpenPathway={openPathway} />} />)}
           {["/usa", "/mr/usa"].map((p) => <Route key={p} path={p} element={<USAPage onOpenLead={openLead} />} />)}
           {["/germany", "/mr/germany"].map((p) => <Route key={p} path={p} element={<GermanyPage onOpenLead={openLead} />} />)}
+          {["/uk", "/mr/uk"].map((p) => <Route key={p} path={p} element={<UKPage onOpenLead={openLead} />} />)}
+          {["/canada", "/mr/canada"].map((p) => <Route key={p} path={p} element={<CanadaPage onOpenLead={openLead} />} />)}
+          {["/australia", "/mr/australia"].map((p) => <Route key={p} path={p} element={<AustraliaPage onOpenLead={openLead} />} />)}
           {["/medical-careers", "/mr/medical-careers"].map((p) => <Route key={p} path={p} element={<MedicalPage onOpenLead={openLead} />} />)}
           {["/career-counselling", "/mr/career-counselling"].map((p) => <Route key={p} path={p} element={<CounsellingPage onOpenLead={openLead} />} />)}
           {["/programs", "/mr/programs"].map((p) => <Route key={p} path={p} element={<ProgramsIndex onOpenLead={openLead} />} />)}

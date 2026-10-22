@@ -177,6 +177,36 @@ export function AudiencePathway({ onOpenLead }) {
   );
 }
 
+function MoreDestinations() {
+  const { lang, t } = useLang();
+  const d = t.destinations;
+  const cards = [
+    { key: "uk", title: "UK", desc: d.ukDesc, img: "https://images.unsplash.com/photo-1663669774114-829142d07a83?w=900&q=80" },
+    { key: "canada", title: "Canada", desc: d.canadaDesc, img: "https://images.unsplash.com/photo-1569982615761-66697da68502?w=900&q=80" },
+    { key: "australia", title: "Australia", desc: d.australiaDesc, img: "https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=900&q=80" },
+  ];
+  return (
+    <div className="mt-12" data-testid="more-destinations">
+      <div className="text-sm font-semibold text-slate-500 mb-5">{d.moreTitle}</div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        {cards.map((c) => (
+          <Link key={c.key} to={langPath(lang, `/${c.key}`)} data-testid={`destination-card-${c.key}`} className="group relative rounded-2xl overflow-hidden shadow-md card-hover aspect-[4/3]">
+            <img src={c.img} alt={c.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/40 to-transparent" />
+            <div className="relative h-full flex flex-col justify-end p-6 text-white">
+              <h3 className="font-display font-extrabold text-2xl lg:text-3xl tracking-tight mb-1.5">{c.title}</h3>
+              <p className="text-white/90 text-sm leading-relaxed mb-3">{c.desc}</p>
+              <div className="inline-flex items-center gap-2 font-semibold text-sm group-hover:gap-3 transition-all">
+                {d.explore} {c.title} <ArrowUpRight className="w-4 h-4" />
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ---------- DESTINATIONS ---------- */
 export function Destinations() {
   const { lang, t } = useLang();
@@ -208,6 +238,7 @@ export function Destinations() {
             </Link>
           ))}
         </div>
+        <MoreDestinations />
       </div>
     </section>
   );

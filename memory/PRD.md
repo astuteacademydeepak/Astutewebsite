@@ -72,3 +72,7 @@ Complete redesign and rebuild of https://www.astuteacademy.com/ as a premium, mo
 
 ## 2026-06 — Destination photo tint
 - USA/Germany card overlay lightened: from-brand-navy/90 via-brand-navy/40 to-transparent. The text stays readable at the bottom.
+
+## 2026-06 — UK, Canada, Australia destinations
+- New pages /uk, /canada, /australia (+ /mr/*), in pages/MoreDestinations.jsx (reuses the exported DestinationPage). Full EN/MR content.
+- Home: 'More destinations' row of 3 smaller cards below the large USA/Germany cards. Also added to the header Destinations dropdown, footer links and page titles.

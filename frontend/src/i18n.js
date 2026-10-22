@@ -51,6 +51,11 @@ export const translations = {
       exploreGermany: "Explore Germany",
       usaDesc: "World-class universities, cutting-edge research and unmatched career opportunities across Bachelor's, Master's, Medical Residency and USMLE.",
       germanyDesc: "Tuition-free public universities, strong engineering programs, English-medium options and clear pathways from Studienkolleg to STEM careers.",
+      moreTitle: "More destinations",
+      explore: "Explore",
+      ukDesc: "One-year Master's at globally respected universities.",
+      canadaDesc: "Co-op programs and post-graduation work options.",
+      australiaDesc: "World-ranked universities and post-study work rights.",
     },
     medical: {
       title: "Build Your Medical Career Beyond Borders",
@@ -271,6 +276,11 @@ export const translations = {
       exploreGermany: "Germany पहा",
       usaDesc: "जागतिक दर्जाची विद्यापीठे, प्रगत संशोधन आणि अतुलनीय करिअर संधी — Bachelor's, Master's, Medical Residency आणि USMLE.",
       germanyDesc: "शुल्कमुक्त सार्वजनिक विद्यापीठे, मजबूत अभियांत्रिकी कार्यक्रम, इंग्रजी-माध्यम पर्याय आणि Studienkolleg पासून STEM करिअरपर्यंत स्पष्ट मार्ग.",
+      moreTitle: "आणखी देश",
+      explore: "पहा",
+      ukDesc: "जगभर मान्यताप्राप्त विद्यापीठांमध्ये एक वर्षाचे Master's.",
+      canadaDesc: "Co-op कार्यक्रम आणि पदवीनंतर काम करण्याचे पर्याय.",
+      australiaDesc: "जागतिक क्रमवारीतील विद्यापीठे आणि अभ्यासोत्तर काम हक्क.",
     },
     medical: {
       title: "सीमांच्या पलीकडे तुमची मेडिकल करिअर घडवा",

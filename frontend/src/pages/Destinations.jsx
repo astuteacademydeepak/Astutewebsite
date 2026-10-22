@@ -1,7 +1,7 @@
 import { useLang } from "../i18n";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
-function DestinationPage({ onOpenLead, config }) {
+export function DestinationPage({ onOpenLead, config }) {
   const { lang, t } = useLang();
   const c = config[lang];
   return (

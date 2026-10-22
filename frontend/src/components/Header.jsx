@@ -35,6 +35,24 @@ export default function Header({ onOpenLead }) {
       desc: lang === "mr" ? "शुल्कमुक्त विद्यापीठे, STEM आणि इंग्रजी-माध्यम" : "Tuition-free universities, STEM & English-medium",
       flag: "🇩🇪",
     },
+    {
+      to: langPath(lang, "/uk"),
+      label: lang === "mr" ? "UK शिक्षण" : "UK Education",
+      desc: lang === "mr" ? "एक वर्षाचे Master's आणि Graduate Route" : "One-year Master's & Graduate Route",
+      flag: "🇬🇧",
+    },
+    {
+      to: langPath(lang, "/canada"),
+      label: lang === "mr" ? "Canada शिक्षण" : "Canada Education",
+      desc: lang === "mr" ? "Co-op कार्यक्रम आणि पदवीनंतर काम" : "Co-op programs & post-graduation work",
+      flag: "🇨🇦",
+    },
+    {
+      to: langPath(lang, "/australia"),
+      label: lang === "mr" ? "Australia शिक्षण" : "Australia Education",
+      desc: lang === "mr" ? "Go8 विद्यापीठे आणि अभ्यासोत्तर काम" : "Go8 universities & post-study work",
+      flag: "🇦🇺",
+    },
   ];
 
   const links = [
