@@ -196,7 +196,7 @@ export function Destinations() {
           {cards.map((c, i) => (
             <Link key={i} to={c.link} data-testid={`destination-card-${c.title.toLowerCase()}`} className="group relative rounded-3xl overflow-hidden shadow-lg card-hover aspect-[5/4]">
               <img src={c.img} alt={c.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/85 to-brand-navy/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/40 to-transparent" />
               <div className="relative h-full flex flex-col justify-end p-7 lg:p-10 text-white">
                 <div className="inline-flex items-center self-start px-3 py-1 rounded-full bg-brand-orange text-white text-[10px] font-bold uppercase tracking-widest mb-3">{c.tag}</div>
                 <h3 className="font-display font-extrabold text-4xl lg:text-5xl tracking-tight mb-3">{c.title}</h3>

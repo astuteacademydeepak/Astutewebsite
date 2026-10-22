@@ -69,3 +69,6 @@ Complete redesign and rebuild of https://www.astuteacademy.com/ as a premium, mo
 
 ## 2026-06 — Logo update
 - Replaced the logo in Header, Footer (white version) and Admin with the new transparent `Astute logo New_H.png`. Removed the multiply-blend workaround.
+
+## 2026-06 — Destination photo tint
+- USA/Germany card overlay lightened: from-brand-navy/90 via-brand-navy/40 to-transparent. The text stays readable at the bottom.
